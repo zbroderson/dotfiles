@@ -1,0 +1,163 @@
+{
+    "editor.fontFamily": "Consolas",
+    "editor.fontSize": 16.5,
+    "workbench.colorTheme": "Visual Studio 2019 Dark",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "entity.name.type.class",
+                "settings": {
+                    "foreground": "#fd9720",
+                }
+            },
+            {
+                "scope": "storage.type.cs",
+                "settings": {
+                    "foreground": "#fd9720",
+                }
+            },
+            {
+                "scope": "entity.name.function",
+                "settings": {
+                    "foreground": "#FFFFFF",
+                }
+            },
+            {
+                "scope" : "entity.name.variable",
+                "settings": {
+                    "foreground": "#FFFFFF",
+                }
+            },
+            {
+                "scope" : "entity.name.variable.field.cs",
+                "settings": {
+                    "foreground": "#FFFFFF",
+                }
+            },
+            {
+                "scope" : "variable.other.object",
+                "settings": {
+                    "foreground": "#FFFFFF",
+                }
+            },
+            {
+                "scope" : "entity.name.type.namespace.cs",
+                "settings": {
+                    "foreground": "#FFFFFF",
+                }
+            },
+            {
+                "scope" : "keyword.other",
+                "settings": {
+                    "foreground": "#66d8ef",
+                }
+            },
+            {
+                "scope" : "keyword.type.cs",
+                "settings": {
+                    "foreground": "#66d8ef",
+                }
+            },
+            {
+                "scope" : "keyword.other.using",
+                "settings": {
+                    "foreground": "#66d8ef",
+                }
+            },
+            // {
+            //     "scope" : "keyword.control.flow.return.cs",
+            //     "settings": {
+            //         "foreground": "#66d8ef",
+            //     }
+            // },
+            // {
+            //     "scope" : "keyword.control.conditional",
+            //     "settings": {
+            //         "foreground": "#66d8ef",
+            //     }
+            // },
+            {
+                "scope" : "keyword.control",
+                "settings": {
+                    "foreground": "#66d8ef",
+                }
+            },
+            {
+                "scope" : "constant.language",
+                "settings": {
+                    "foreground": "#66d8ef",
+                }
+            },
+            {
+                "scope" : "storage.modifier",
+                "settings": {
+                    "foreground": "#66d8ef",
+                }
+            },
+            {
+                "scope" : "variable.other.readwrite.cs",
+                "settings": {
+                    "foreground": "#FFFFFF",
+                }
+            },
+            {
+                "scope" : "punctuation.accessor.cs",
+                "settings": {
+                    "foreground": "#f92673",
+                }
+            },
+            {
+                "scope" : "keyword.operator",
+                "settings": {
+                    "foreground": "#f92673",
+                }
+            },
+            {
+                "scope" : "constant.numeric",
+                "settings": {
+                    "foreground": "#ad81ff",
+                }
+            },
+            {
+                "scope" : "string.quoted",
+                "settings": {
+                    "foreground": "#e6db74",
+                    "background": "#49483e"
+                }
+            },
+            {
+                "scope" : "comment",
+                "settings": {
+                    "foreground": "#7a7979",
+                    
+                }
+            },
+            {
+                "scope" : "punctuation.definition.comment",
+                "settings": {
+                    "foreground": "#7a7979",
+                    
+                }
+            },
+        ]
+    },
+    "window.zoomLevel": 0,
+    "omnisharp.path": "latest",
+    "omnisharp.enableImportCompletion": true,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+    "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "format.newLine": {
+
+        "brace": true
+    },
+    "terminal.external.linuxExec": "alacritty",
+    
+
+}
