@@ -274,6 +274,12 @@ globalkeys = my_table.join(
     --Skip with Spotify
     awful.key({ Any } , "XF86Launch6", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") end, 
     	{description = "Spotify Skip", group = "Custom Shortcuts"}),
+    --Screenshot gui 
+    awful.key({ Any } , "Print", function() awful.spawn("flameshot gui") end, 
+    	{description = "Manual Screenshot", group = "Custom Shortcuts"}),
+    --screenshot focused screen
+    awful.key({ "Shift" } , "Print", function() awful.spawn("flameshot screen -p " .. os.getenv("HOME") ..  "/Pictures/Screenshots -n " .. awful.screen.focused().index) end, 
+    	{description = "Screenshot Current Screen", group = "Custom Shortcuts"}),
 
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
@@ -724,8 +730,8 @@ awful.rules.rules = {
     	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[3] } },
 
     --this rule doesnt actually work :( workaround applied after in signals
-    { rule = { class = "[Ss]potify" },
-    	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[5] } },
+    --{ rule = { class = "[Ss]potify" },
+    --	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[5] } },
     
     { rule = { class = "Steam"},
     	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[4] } },
@@ -748,9 +754,9 @@ client.connect_signal("property::class", function(c)
                      text = "nil idk why" })
 		end
 
-		--c:move_to_screen(screen)
+		c:move_to_screen()
 		
-		local tag = awful.tag.find_by_name(screen, awful.util.tagnames[5])
+		local tag = awful.tag.find_by_name(awful.screen.focused(), awful.util.tagnames[5])
 		c:move_to_tag(tag)
 
 	end 
@@ -831,6 +837,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 awful.spawn.single_instance("discord", awful.rules.rules, nil, "discord-startup")
 awful.spawn.single_instance("steam -silent", awful.rules.rules, nil, "steam-startup")
-awful.spawn.single_instance("spotify", awful.rules.fules, nil, "spotify-startup")
+awful.spawn.single_instance("spotify", awful.rules.rules, nil, "spotify-startup")
 -- I dont think this is needed:  awful.spawn.single_instance("polychromatic-tray-applet", awful.rules.fules, nil, "razer-startup")
-awful.spawn.single_instance("udiskie", awful.rules.fules, nil, "udiskie-startup")
+awful.spawn.single_instance("udiskie", awful.rules.rules, nil, "udiskie-startup")
+awful.spawn.single_instance("flameshot", awful.rules.rules, nil, "flameshot-startup")

@@ -158,6 +158,7 @@
         "brace": true
     },
     "terminal.external.linuxExec": "alacritty",
+    "haskell.liquidOn": true,
     
 
 }

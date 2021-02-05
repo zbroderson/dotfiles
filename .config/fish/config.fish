@@ -5,7 +5,7 @@ set fish_greeting
 # startx
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-	set PATH "$HOME/dotnet:$PATH"
+	set PATH "/home/zack/dotnet:$PATH"
         exec startx -- -keeptty
     end
 end
@@ -44,5 +44,6 @@ else
 end
 
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias monoff='xset dpms force off'
 
 starship init fish | source
