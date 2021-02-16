@@ -6,7 +6,8 @@ set fish_greeting
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
 	set PATH "/home/zack/dotnet:$PATH"
-        exec startx -- -keeptty
+        set-env-vars 
+	exec startx -- -keeptty
     end
 end
 
@@ -34,16 +35,20 @@ function ex --description "Expand or extract bundled & compressed files"
   end
 end
 
-neofetch
-
-
-if test -e $HOME/.config/fish/private-env-vars.fish
-	source $HOME/.config/fish/private-env-vars.fish
-else
-	echo "[WARN] 'private-env-vars.fish' is not present!  Your env vars wont be set until it is!"
+function set-env-vars
+	if test -e $HOME/.config/fish/private-env-vars.fish
+		source $HOME/.config/fish/private-env-vars.fish
+	else
+		echo "[WARN] 'private-env-vars.fish' is not present!  Your env vars wont be set until it is!"
+	end
 end
+
+neofetch
+set-env-vars
+
 
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias monoff='xset dpms force off'
+alias vim='nvim'
 
 starship init fish | source

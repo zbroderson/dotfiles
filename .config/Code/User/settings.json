@@ -141,7 +141,6 @@
             },
         ]
     },
-    "window.zoomLevel": 0,
     "omnisharp.path": "latest",
     "omnisharp.enableImportCompletion": true,
     "git.autofetch": true,
