@@ -1,6 +1,6 @@
 #disable 'fish is an interactive shell blah blah blah ....'
 set fish_greeting
-
+eval (ssh-agent -c) >/dev/null 2>&1
 
 # startx
 if status is-login

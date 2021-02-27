@@ -141,7 +141,7 @@
             },
         ]
     },
-    "omnisharp.path": "latest",
+    //"omnisharp.path": "latest",
     "omnisharp.enableImportCompletion": true,
     "git.autofetch": true,
     "git.enableSmartCommit": true,
