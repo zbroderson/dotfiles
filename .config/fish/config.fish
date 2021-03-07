@@ -5,7 +5,7 @@ eval (ssh-agent -c) >/dev/null 2>&1
 # startx
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-	set PATH "/home/zack/dotnet:$PATH"
+	set PATH "/home/zack/.local/bin:/home/zack/dotnet:$PATH"
         set-env-vars 
 	exec startx -- -keeptty
     end
@@ -41,6 +41,44 @@ function set-env-vars
 	else
 		echo "[WARN] 'private-env-vars.fish' is not present!  Your env vars wont be set until it is!"
 	end
+end
+
+function new-csharp-sln
+	set --local name $argv[1]
+	mkdir -p $HOME/repos/csharp/$name
+	cd $HOME/repos/csharp/$name
+	dotnet new sln
+	dotnet new gitignore
+end
+
+function new-csharp-classlib
+	set --local name $argv[1]
+
+	set --local files *.sln
+        if not set -q files[1]
+		new-csharp-sln $name
+        end
+
+	mkdir $name
+	cd $name
+	dotnet new classlib
+	cd ..
+	dotnet sln add $name
+end
+
+function new-csharp-console
+	set --local name $argv[1]
+
+	set --local files *.sln
+        if not set -q files[1]
+		new-csharp-sln $name
+        end
+
+	mkdir $name
+	cd $name
+	dotnet new console
+	cd ..
+	dotnet sln add $name
 end
 
 neofetch
