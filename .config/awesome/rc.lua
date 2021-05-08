@@ -386,7 +386,8 @@ globalkeys = my_table.join(
     -- Show/Hide Wibox
     -- Now opens browser
     awful.key({ modkey }, "b", function ()
-        	awful.util.spawn_with_shell("google-chrome-stable")
+        	-- this part of my life is degoogled awful.util.spawn_with_shell("google-chrome-stable")
+		awful.util.spawn_with_shell("firefox-developer-edition")
     	end,
         {description = "open browser", group = "awesome"}),
 
