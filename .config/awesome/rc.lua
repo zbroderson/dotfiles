@@ -840,7 +840,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 
-awful.spawn.single_instance("discord-canary", awful.rules.rules, nil, "discord-startup")
+awful.spawn.single_instance("discord-canary --no-sandbox", awful.rules.rules, nil, "discord-startup")
 awful.spawn.single_instance("steam -silent", awful.rules.rules, nil, "steam-startup")
 awful.spawn.single_instance("spotify", awful.rules.rules, nil, "spotify-startup")
 -- I dont think this is needed:  awful.spawn.single_instance("polychromatic-tray-applet", awful.rules.fules, nil, "razer-startup")
