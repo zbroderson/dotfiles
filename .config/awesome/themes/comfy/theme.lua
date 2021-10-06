@@ -135,8 +135,8 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             dress_widget(update),
-	    dress_widget(mem.widget),
 	    dress_widget(cpu.widget),
+	    dress_widget(mem.widget),
 	    dress_widget(clock),
 	    wibox.container.margin(wibox.widget.systray(), 3, 0)
             --]]
