@@ -48,13 +48,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-xsetroot -cursor_name left_ptr
-
-
 ~/.screenlayout/layout.sh
 picom &
 udiskie &
 lxsession &
-#exec ck-launch-session dbus-launch --exit-with-session awesome
 exec awesome
-#exec xmonad
