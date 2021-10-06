@@ -81,6 +81,14 @@ function new-csharp-console
 	dotnet sln add $name
 end
 
+function aw-theme
+	vim ~/.config/awesome/themes/comfy/theme.lua
+end
+
+function aw-rc
+	vim ~/.config/awesome/rc.lua
+end
+
 neofetch
 set-env-vars
 

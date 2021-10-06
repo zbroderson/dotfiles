@@ -74,20 +74,11 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "blackburn",       -- 1
-    "copland",         -- 2
-    "dremora",         -- 3
-    "holo",            -- 4
-    "multicolor",      -- 5
-    "powerarrow",      -- 6
-    "powerarrow-dark", -- 7
-    "rainbow",         -- 8
-    "steamburn",       -- 9
-    "vertex",          -- 10
-    "powerarrow-blue", -- 11
+    "powerarrow",      -- 1
+    "comfy"	       -- 2
 }
 
-local chosen_theme = themes[6]
+local chosen_theme = themes[2]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "alacritty"
@@ -100,13 +91,13 @@ local scrlocker    = "slock"
 
 awful.util.terminal = terminal
 -- awful.util.tagnames = { "1", "2", "3", "4", "5" }
-awful.util.tagnames = { " HOME ", " WWW ", " DISCORD ", " GAMES ", " MUSIC "}
+awful.util.tagnames = { "", "", "", "", "", ""}
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+    --awful.layout.suit.floating,
+    --awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.bottom,
+    --awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
@@ -278,7 +269,7 @@ globalkeys = my_table.join(
     awful.key({ Any } , "Print", function() awful.spawn("flameshot gui") end, 
     	{description = "Manual Screenshot", group = "Custom Shortcuts"}),
     --screenshot focused screen
-    awful.key({ "Shift" } , "Print", function() awful.spawn("flameshot screen -p " .. os.getenv("HOME") ..  "/Pictures/Screenshots -n " .. awful.screen.focused().index) end, 
+    awful.key({ "Shift" } , "Print", function() awful.spawn("flameshot screen -p " .. os.getenv("HOME") ..  "/Pictures/Screenshots -n " .. awful.screen.focused().index - 1) end, 
     	{description = "Screenshot Current Screen", group = "Custom Shortcuts"}),
 
     -- Take a screenshot

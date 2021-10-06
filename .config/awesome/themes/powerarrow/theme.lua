@@ -18,19 +18,22 @@ local blue = "#4264ED"
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow"
-theme.wallpaper                                 = "/home/zack/Pictures/Wallpapers/0004.png"
+theme.wallpaper                                 = "/home/zack/Pictures/Wallpapers/0001.jpeg"
 theme.font                                      = "Noto Sans Regular 11"
 theme.taglist_font                              = "Droid Sans Bold 7"
 theme.fg_normal                                 = "#FEFEFE"
 theme.fg_focus                                  = "#7b88d3"
 --theme.fg_urgent                                 = "#b74822"
 theme.fg_urgent                                 = "#FEFEFE"
-theme.bg_normal                                 = "#222222"
+theme.bg_normal                                 = "alpha" -- was "#222222"
 theme.bg_focus                                  = blue
 --theme.bg_urgent                                 = "#3F3F3F"
-theme.bg_urgent                                 = "#222222"
+--theme.bg_urgent                                 = "#222222"
+theme.bg_urgent                                 = theme.bg_normal
+theme.notification_bg				= "#222222"
 theme.taglist_fg_focus                          = "#FFFFFF" --7b88d3
-theme.tasklist_bg_focus                         = "#222222"
+--theme.tasklist_bg_focus                         = "#222222"
+theme.tasklist_bg_focus                         = theme.bg_normal
 theme.tasklist_fg_focus                         = "#7b88d3"
 theme.border_width                              = 2
 theme.border_normal                             = "#3F3F3F"
@@ -239,7 +242,7 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
+            wibox.widget.systray {opacity = 0}, -- opacity no work; still shows up black
             arrow(theme.bg_normal,blue),
 	    wibox.container.background(wibox.container.margin(wibox.widget { updateicon, update, layout = wibox.layout.align.horizontal} , 2, 3), blue),
 	    arrow(blue,red), --red was #777E76
