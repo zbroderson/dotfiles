@@ -271,6 +271,10 @@ globalkeys = my_table.join(
     --screenshot focused screen
     awful.key({ "Shift" } , "Print", function() awful.spawn("flameshot screen -p " .. os.getenv("HOME") ..  "/Pictures/Screenshots -n " .. awful.screen.focused().index - 1) end, 
     	{description = "Screenshot Current Screen", group = "Custom Shortcuts"}),
+    
+    awful.key({ modkey }, "d", function() awful.spawn.with_shell("killall DiscordCanary && killall DiscordCanary && discord-canary --no-sandbox") end, 
+    	{description = "Restart Discord", group = "Custom Shortcuts"}),
+
 
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
