@@ -282,7 +282,7 @@ globalkeys = my_table.join(
               {description = "lock screen", group = "hotkeys"}),
 
     -- Hotkeys
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey, "Shift"           }, "s",      hotkeys_popup.show_help,
               {description = "show help", group="awesome"}),
     -- Tag browsing
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -566,6 +566,16 @@ globalkeys = my_table.join(
 
     awful.key({ modkey }, "r", function () awful.util.spawn("rofi -disable-history -display-run \"RUN\" -show run") end,
               {description = "run prompt", group = "launcher"}),
+
+    awful.key({ modkey }, "s", function ()
+	    awful.spawn.with_shell("rofi -dmenu -p \"Search:\" | xargs -I{} xdg-open \"https://google.com/search?q={}\"")
+	end,
+	{description = "search prompt", group = "launcher"}),
+
+    awful.key({ modkey, "Shift" }, "b", function() 
+	    awful.spawn.with_shell("fish --no-config .local/bin/rofi-bookmark.fish | rofi -dmenu -p \"Open:\" | xargs -I{} xdg-open {}") 
+    	end,
+	{description = "bookmark prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()

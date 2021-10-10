@@ -23,7 +23,8 @@ theme.bg_normal                                 = "alpha"
 theme.bg_focus                                  = blue
 theme.bg_urgent                                 = theme.bg_normal
 theme.bg_systray				= "#1A181D"
-theme.notification_bg				= "#222222"
+theme.alt_bg					= "#222222"
+theme.notification_bg				= theme.alt_bg
 theme.taglist_font				= icon_font
 theme.taglist_fg_focus                          = "#FFFFFF"
 theme.taglist_spacing 				= dpi(5)
@@ -66,7 +67,7 @@ theme.cal = lain.widget.cal({
     notification_preset = {
         font = "Noto Sans Mono Medium 10",
         fg   = theme.fg_normal,
-        bg   = theme.bg_normal
+        bg   = theme.alt_bg
     }
 })
 
