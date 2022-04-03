@@ -9,20 +9,20 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local dpi = xresources.apply_dpi
 
-local icon_font = "Font Awesome 5 Free Regular"
+local icon_font = "Font Awesome 6 Free Solid"
 local widget_icon_font = icon_font .. " 10"
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/comfy"
-theme.wallpaper                                 = "/home/zack/Pictures/Wallpapers/0001.jpeg"
-theme.font                                      = "Noto Sans Regular 11"
+theme.wallpaper                                 = "/home/zack/Pictures/Wallpapers/0008.jpeg"
+theme.font                                      = "Noto Sans Bold 11"
 theme.fg_normal                                 = "#FEFEFE"
 theme.fg_focus                                  = "#7b88d3"
 theme.fg_urgent                                 = "#FEFEFE"
 theme.bg_normal                                 = "alpha"
 theme.bg_focus                                  = blue
 theme.bg_urgent                                 = theme.bg_normal
-theme.bg_systray				= "#1A181D"
+theme.bg_systray				= "#39405A"
 theme.alt_bg					= "#222222"
 theme.notification_bg				= theme.alt_bg
 theme.hotkeys_bg				= theme.alt_bg
@@ -78,7 +78,7 @@ theme.cal = lain.widget.cal({
 -- MEM
 local mem = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.font(widget_icon_font, "") .. markup.font(theme.font, " " .. mem_now.used .. "MB "))
+        widget:set_markup(markup.font(widget_icon_font, "") .. markup.font(theme.font, " " .. mem_now.used .. "MB "))
     end
 })
 
@@ -86,7 +86,7 @@ local mem = lain.widget.mem({
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.font(widget_icon_font, "") .. markup.font(theme.font, " " .. cpu_now.usage .. "% "))
+        widget:set_markup(markup.font(widget_icon_font, --[[""--]] "") .. markup.font(theme.font, " " .. cpu_now.usage .. "% "))
     end
 })
 
@@ -157,7 +157,8 @@ end
 function dress_widget(w)
 	local widget_margin = 10
 	local widget_spacing = 4
-	local background = "#454545"
+	-- local background = "#454545"
+	local background = "alpha"
 
 	local orig_margin_w = margin(wibox.widget {w, layout = wibox.layout.align.horizontal}, widget_margin)
 	local background_w = apply_background_and_shape(orig_margin_w, background)
