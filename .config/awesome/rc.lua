@@ -203,6 +203,9 @@ globalkeys = my_table.join(
     --Play/Pause with spotify
     awful.key({ Any } , "XF86Launch8", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end,
     	{description = "Spotify Play/Pause", group = "Custom Shortcuts"}),
+    --Previous with spotify
+    awful.key({ Any } , "XF86Launch7", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") end,
+    	{description = "Spotify Previous", group = "Custom Shortcuts"}),
     --Skip with Spotify
     awful.key({ Any } , "XF86Launch6", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") end, 
     	{description = "Spotify Skip", group = "Custom Shortcuts"}),
