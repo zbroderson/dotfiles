@@ -685,18 +685,11 @@ client.connect_signal("property::class", function(c)
 
 	if c.class == "Spotify" then
 		
-		local screen = awful.screen[1]
+		--local screen = awful.screen[2]
 
-		if tag == nil then 
-
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, spotify is stupid!",
-                     text = "nil idk why" })
-		end
-
-		c:move_to_screen()
+		c:move_to_screen(2)
 		
-		local tag = awful.tag.find_by_name(awful.screen.focused(), awful.util.tagnames[5])
+		local tag = awful.tag.gettags(2)[5]
 		c:move_to_tag(tag)
 
 	end 
