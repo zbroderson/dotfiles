@@ -14,7 +14,7 @@ local widget_icon_font = icon_font .. " 10"
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/comfy"
-theme.wallpaper                                 = "/home/zack/Pictures/Wallpapers/0008.jpeg"
+theme.wallpaper                                 = "/home/zack/Pictures/Wallpapers/0011.png"
 theme.font                                      = "Noto Sans Bold 11"
 theme.fg_normal                                 = "#FEFEFE"
 theme.fg_focus                                  = "#7b88d3"
@@ -22,7 +22,7 @@ theme.fg_urgent                                 = "#FEFEFE"
 theme.bg_normal                                 = "alpha"
 theme.bg_focus                                  = blue
 theme.bg_urgent                                 = theme.bg_normal
-theme.bg_systray				= "#39405A"
+theme.bg_systray				= "#22253c"
 theme.alt_bg					= "#222222"
 theme.notification_bg				= theme.alt_bg
 theme.hotkeys_bg				= theme.alt_bg
