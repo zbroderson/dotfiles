@@ -48,8 +48,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-~/.screenlayout/layout.sh
+
+if [ $(xrandr | grep " connected" | wc -l) == "2" ]; then
+	~/.screenlayout/layout-double.sh
+else
+	~/.screenlayout/layout-single.sh
+fi
+
 picom &
-udiskie &
-lxsession &
+nm-applet &
+#udiskie &
+#lxsession &
 exec awesome

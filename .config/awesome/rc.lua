@@ -201,13 +201,13 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) 
 globalkeys = my_table.join(
     --custom shortcuts
     --Play/Pause with spotify
-    awful.key({ Any } , "XF86Launch8", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end,
+    awful.key({ Any } , "XF86AudioPlay", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end,
     	{description = "Spotify Play/Pause", group = "Custom Shortcuts"}),
     --Previous with spotify
-    awful.key({ Any } , "XF86Launch7", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") end,
+    awful.key({ Any } , "XF86AudioPrev", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") end,
     	{description = "Spotify Previous", group = "Custom Shortcuts"}),
     --Skip with Spotify
-    awful.key({ Any } , "XF86Launch6", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") end, 
+    awful.key({ Any } , "XF86AudioNext", function() awful.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") end, 
     	{description = "Spotify Skip", group = "Custom Shortcuts"}),
     --Screenshot gui 
     awful.key({ Any } , "Print", function() awful.spawn("flameshot gui") end, 
@@ -326,7 +326,7 @@ globalkeys = my_table.join(
     -- Now opens browser
     awful.key({ modkey }, "b", function ()
         	-- this part of my life is degoogled awful.util.spawn_with_shell("google-chrome-stable")
-		awful.util.spawn_with_shell("firefox-developer-edition")
+		awful.util.spawn_with_shell("firefox")
     	end,
         {description = "open browser", group = "awesome"}),
 
@@ -681,14 +681,14 @@ awful.rules.rules = {
 -- {{{ Signals
 
 --spotify
-client.connect_signal("property::class", function(c)
-	if c.class == "Spotify" then
-		c:move_to_screen(2)
-		
-		local tag = awful.tag.gettags(2)[5]
-		c:move_to_tag(tag)
-	end 
-end)
+--client.connect_signal("property::class", function(c)
+--	if c.class == "Spotify" and screen:count() == 2 then
+--		c:move_to_screen(2)
+--		
+--		local tag = awful.tag.gettags(2)[5]
+--		c:move_to_tag(tag)
+--	end 
+--end)
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
@@ -767,7 +767,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 
-awful.spawn.single_instance("discord-canary --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy", awful.rules.rules, nil, "discord-startup")
+--awful.spawn.single_instance("discord-canary --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy", awful.rules.rules, nil, "discord-startup")
+awful.spawn.single_instance("discord", awful.rules.rules, nil, "discord-startup")
 awful.spawn.single_instance("steam -silent", awful.rules.rules, nil, "steam-startup")
 awful.spawn.single_instance("spotify", awful.rules.rules, nil, "spotify-startup")
 -- I dont think this is needed:  awful.spawn.single_instance("polychromatic-tray-applet", awful.rules.fules, nil, "razer-startup")

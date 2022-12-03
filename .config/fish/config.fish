@@ -7,7 +7,7 @@ if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
 	set PATH "/home/zack/.cargo/bin/:/home/zack/.local/bin:/home/zack/dotnet:$PATH"
 	#set-env-vars 
-	exec startx -- -keeptty
+	startx -- -keeptty
     end
 end
 
