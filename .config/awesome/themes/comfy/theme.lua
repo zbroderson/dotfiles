@@ -1,6 +1,9 @@
+local io = require("io")
 local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
+local naughty       = require("naughty")
+
 local wibox = require("wibox")
 local xresources = require("beautiful.xresources")
 
@@ -12,9 +15,24 @@ local dpi = xresources.apply_dpi
 local icon_font = "Font Awesome 6 Free Solid"
 local widget_icon_font = icon_font .. " 10"
 
+math.randomseed(os.time())
+local wallpapers = {}
+local i = 1
+for dir in io.popen([[ find /home/zack/pictures/wallpapers/ -mindepth 1 -maxdepth 1 ]]):lines() do
+	wallpapers[i] = dir
+	i = i + 1
+end
+
+function get_systray_color(image)
+	local width = io.popen("file " .. image .. " | grep -Eo \"([[:digit:]]+)( x|x)\" | grep -Eo \"([[:digit:]]+)\""):read("*a")
+	local hexNum = io.popen("convert " .. image .. " -format '%[hex:p{" .. width .. " ,0}]' info:-"):read("*a")
+
+	return "#" .. string.sub(hexNum, 1, 6)
+end
+
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/comfy"
-theme.wallpaper                                 = "/home/zack/Pictures/Wallpapers/0011.png"
+theme.wallpaper                                 = wallpapers[math.random(#(wallpapers))]
 theme.font                                      = "Noto Sans Bold 11"
 theme.fg_normal                                 = "#FEFEFE"
 theme.fg_focus                                  = "#7b88d3"
@@ -22,7 +40,7 @@ theme.fg_urgent                                 = "#FEFEFE"
 theme.bg_normal                                 = "alpha"
 theme.bg_focus                                  = blue
 theme.bg_urgent                                 = theme.bg_normal
-theme.bg_systray				= "#22253c"
+theme.bg_systray				= get_systray_color(theme.wallpaper)
 theme.alt_bg					= "#222222"
 theme.notification_bg				= theme.alt_bg
 theme.hotkeys_bg				= theme.alt_bg

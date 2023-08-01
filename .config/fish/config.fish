@@ -92,8 +92,9 @@ end
 neofetch
 set-env-vars
 set PATH $PATH:/home/zack/.dotnet/tools
+set BROWSER firefox
 
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias monoff='xset dpms force off'
 alias vim='nvim'
 

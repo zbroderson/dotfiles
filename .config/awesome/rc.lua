@@ -216,7 +216,7 @@ globalkeys = my_table.join(
     awful.key({ "Shift" } , "Print", function() awful.spawn("flameshot screen -p " .. os.getenv("HOME") ..  "/Pictures/Screenshots -n " .. awful.screen.focused().index - 1) end, 
     	{description = "Screenshot Current Screen", group = "Custom Shortcuts"}),
     
-    awful.key({ modkey }, "d", function() awful.spawn.with_shell("killall DiscordCanary && killall DiscordCanary && discord-canary --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy") end, 
+    awful.key({ modkey }, "d", function() awful.spawn.with_shell("killall Discord && killall Discord && discord --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy") end, 
     	{description = "Restart Discord", group = "Custom Shortcuts"}),
 
 
@@ -323,12 +323,6 @@ globalkeys = my_table.join(
         {description = "go forth", group = "client"}),
 
     -- Show/Hide Wibox
-    -- Now opens browser
-    awful.key({ modkey }, "b", function ()
-        	-- this part of my life is degoogled awful.util.spawn_with_shell("google-chrome-stable")
-		awful.util.spawn_with_shell("firefox-developer-edition")
-    	end,
-        {description = "open browser", group = "awesome"}),
 
     -- On the fly useless gaps change
     awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end,
@@ -481,10 +475,10 @@ globalkeys = my_table.join(
               {description = "copy gtk to terminal", group = "hotkeys"}),
 
     -- User programs
-    awful.key({ modkey }, "q", function () awful.spawn(browser) end,
+    awful.key({ modkey }, "b", function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
-    awful.key({ modkey }, "a", function () awful.spawn(gui_editor) end,
-              {description = "run gui editor", group = "launcher"}),
+    awful.key({ modkey }, "a", function () awful.spawn("obsidian") end,
+              {description = "run obsidian", group = "launcher"}),
 
     awful.key({ modkey }, "r", function () awful.util.spawn("rofi -disable-history -display-run \"RUN\" -show run") end,
               {description = "run prompt", group = "launcher"}),
@@ -543,7 +537,7 @@ clientkeys = my_table.join(
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
+    awful.key({ modkey,           }, "q",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
@@ -767,10 +761,11 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 
-awful.spawn.single_instance("discord-canary --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy", awful.rules.rules, nil, "discord-startup")
+awful.spawn.single_instance("discord --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy", awful.rules.rules, nil, "discord-startup")
 awful.spawn.single_instance("steam -silent", awful.rules.rules, nil, "steam-startup")
 awful.spawn.single_instance("spotify", awful.rules.rules, nil, "spotify-startup")
 -- I dont think this is needed:  awful.spawn.single_instance("polychromatic-tray-applet", awful.rules.fules, nil, "razer-startup")
 awful.spawn.single_instance("udiskie", awful.rules.rules, nil, "udiskie-startup")
 awful.spawn.single_instance("flameshot", awful.rules.rules, nil, "flameshot-startup")
 awful.spawn.single_instance("node /home/zack/repos/typescript/image-hosting/file-watcher/build/src/index.js", awful.rules.rules, nil, "file-watcher-startup")
+awful.spawn.single_instance("blueman-applet", awful.rules.rules, nil, "blueman-applet")
