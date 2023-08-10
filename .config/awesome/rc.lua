@@ -83,7 +83,7 @@ local scrlocker    = "slock"
 
 awful.util.terminal = terminal
 -- awful.util.tagnames = { "1", "2", "3", "4", "5" }
-awful.util.tagnames = { "", "", "", "", "", ""}
+awful.util.tagnames = { "", "", "", "", "", "", ""}
 awful.layout.layouts = {
     awful.layout.suit.tile,
 }
@@ -477,7 +477,21 @@ globalkeys = my_table.join(
     -- User programs
     awful.key({ modkey }, "b", function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
-    awful.key({ modkey }, "a", function () awful.spawn("obsidian") end,
+    awful.key({ modkey }, "a", function () 
+	    		local has_spawned = false
+			for _, c in ipairs(client.get()) do
+				if c.class == "obsidian" then
+					has_spawned = true
+					break
+				end
+			end 
+
+			if not has_spawned then
+		    		awful.spawn.spawn("obsidian")
+			end
+
+			screen.primary.tags[3]:view_only()
+    		end,
               {description = "run obsidian", group = "launcher"}),
 
     awful.key({ modkey }, "r", function () awful.util.spawn("rofi -disable-history -display-run \"RUN\" -show run") end,
@@ -661,14 +675,18 @@ awful.rules.rules = {
           properties = { maximized = true } },
 
     { rule = { class = "discord" },
-    	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[3] } },
+    	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[4] } },
 
     --this rule doesnt actually work :( workaround applied after in signals
     --{ rule = { class = "[Ss]potify" },
     --	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[5] } },
     
     { rule = { class = "Steam"},
-    	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[4] } },
+    	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[5] } },
+
+	
+    { rule = { class = "obsidian"},
+    	properties = { focus = false, urgent = false, screen = 1, tag = awful.util.tagnames[3] } },
 }
 -- }}}
 
@@ -768,4 +786,5 @@ awful.spawn.single_instance("spotify", awful.rules.rules, nil, "spotify-startup"
 awful.spawn.single_instance("udiskie", awful.rules.rules, nil, "udiskie-startup")
 awful.spawn.single_instance("flameshot", awful.rules.rules, nil, "flameshot-startup")
 awful.spawn.single_instance("node /home/zack/repos/typescript/image-hosting/file-watcher/build/src/index.js", awful.rules.rules, nil, "file-watcher-startup")
+awful.spawn.single_instance("nm-applet", awful.rules.rules, nil, "nm-applet")
 awful.spawn.single_instance("blueman-applet", awful.rules.rules, nil, "blueman-applet")

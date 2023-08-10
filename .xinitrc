@@ -62,5 +62,5 @@ fi
 # start some nice programs
 picom &
 udiskie &
-lxsession &
+polkit-dumb-agent &
 exec awesome
