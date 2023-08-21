@@ -678,8 +678,8 @@ awful.rules.rules = {
     	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[4] } },
 
     --this rule doesnt actually work :( workaround applied after in signals
-    --{ rule = { class = "[Ss]potify" },
-    --	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[5] } },
+    { rule = { class = "[Ss]potify" },
+        properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[6] } },
     
     { rule = { class = "Steam"},
     	properties = { focus = false, urgent = false, screen = 2, tag = awful.util.tagnames[5] } },
@@ -697,7 +697,7 @@ client.connect_signal("property::class", function(c)
 	if c.class == "Spotify" then
 		c:move_to_screen(2)
 		
-		local tag = awful.tag.gettags(2)[5]
+		local tag = awful.tag.gettags(2)[6]
 		c:move_to_tag(tag)
 	end 
 end)

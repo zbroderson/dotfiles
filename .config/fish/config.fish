@@ -35,14 +35,6 @@ function ex --description "Expand or extract bundled & compressed files"
   end
 end
 
-function set-env-vars
-	if test -e $HOME/.config/fish/private-env-vars.fish
-		source $HOME/.config/fish/private-env-vars.fish
-	else
-		echo "[WARN] 'private-env-vars.fish' is not present!  Your env vars wont be set until it is!"
-	end
-end
-
 function new-csharp-sln
 	set --local name $argv[1]
 	mkdir -p $HOME/repos/csharp/$name
@@ -89,8 +81,10 @@ function aw-rc
 	vim ~/.config/awesome/rc.lua
 end
 
-neofetch
-set-env-vars
+# dont display neofetch if the terminal is being run in vim
+if not set -q VIMRUNTIME
+    neofetch
+end
 set PATH $PATH:/home/zack/.dotnet/tools
 set BROWSER firefox
 
