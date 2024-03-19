@@ -79,6 +79,7 @@ local cycle_prev   = true -- cycle trough all previous client or just the first 
 local editor       = os.getenv("EDITOR") or "vim"
 local gui_editor   = os.getenv("GUI_EDITOR") or "gvim"
 local browser      = os.getenv("BROWSER") or "firefox"
+local is_desktop   = os.getenv("IS_DESKTOP") or "true"
 local scrlocker    = "slock"
 
 awful.util.terminal = terminal
@@ -239,12 +240,6 @@ globalkeys = my_table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-
-    -- Non-empty tag browsing
-    awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end,
-              {description = "view  previous nonempty", group = "tag"}),
-    awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end,
-              {description = "view  previous nonempty", group = "tag"}),
 
     -- Default client focus
     awful.key({ altkey,           }, "j",
@@ -778,13 +773,12 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 
 
+if is_desktop == "true" then
+    awful.spawn.single_instance("discord --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy", awful.rules.rules, nil, "discord-startup")
+    awful.spawn.single_instance("steam -silent", awful.rules.rules, nil, "steam-startup")
+    awful.spawn.single_instance("spotify", awful.rules.rules, nil, "spotify-startup")
+end
 
-awful.spawn.single_instance("discord --no-sandbox --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy", awful.rules.rules, nil, "discord-startup")
-awful.spawn.single_instance("steam -silent", awful.rules.rules, nil, "steam-startup")
-awful.spawn.single_instance("spotify", awful.rules.rules, nil, "spotify-startup")
--- I dont think this is needed:  awful.spawn.single_instance("polychromatic-tray-applet", awful.rules.fules, nil, "razer-startup")
-awful.spawn.single_instance("udiskie", awful.rules.rules, nil, "udiskie-startup")
 awful.spawn.single_instance("flameshot", awful.rules.rules, nil, "flameshot-startup")
-awful.spawn.single_instance("node /home/zack/repos/typescript/image-hosting/file-watcher/build/src/index.js", awful.rules.rules, nil, "file-watcher-startup")
 awful.spawn.single_instance("nm-applet", awful.rules.rules, nil, "nm-applet")
 awful.spawn.single_instance("blueman-applet", awful.rules.rules, nil, "blueman-applet")

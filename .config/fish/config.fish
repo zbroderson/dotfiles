@@ -7,7 +7,8 @@ if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
 	set PATH "/home/zack/.cargo/bin/:/home/zack/.local/bin:/home/zack/dotnet:$PATH"
 	#set-env-vars 
-	exec startx -- -keeptty
+    exec startx -- -keeptty
+    #exec Hyprland
     end
 end
 
@@ -81,12 +82,17 @@ function aw-rc
 	vim ~/.config/awesome/rc.lua
 end
 
-# dont display neofetch if the terminal is being run in vim
-if not set -q VIMRUNTIME
+# dont display neofetch if the terminal is being run in vim tmux, or jetbrains
+if not set -q VIMRUNTIME; and not set -q TMUX; and test "$TERMINAL_EMULATOR" != "JetBrains-JediTerm"
     neofetch
 end
 set PATH $PATH:/home/zack/.dotnet/tools
 set BROWSER firefox
+set EDITOR nvim
+set XDG_CONFIG_HOME /home/zack 
+
+set GOPATH $HOME/go
+set PATH $PATH:$GOPATH/bin
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias monoff='xset dpms force off'

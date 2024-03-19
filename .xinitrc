@@ -47,6 +47,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# set the environment
+export IS_DESKTOP=true
 graphics="$(envycontrol --query)"
 if [[ $graphics == "nvidia" ]]; then
 	xrandr --setprovideroutputsource modesetting NVIDIA-0
@@ -54,13 +56,18 @@ if [[ $graphics == "nvidia" ]]; then
 	~/.screenlayout/layout-nvidia.sh
 elif [[ $graphics == "integrated" ]]; then
 	~/.screenlayout/layout-integrated.sh
+    IS_DESKTOP=false
 else
 	~/.screenlayout/layout.sh
 fi
 
 
 # start some nice programs
-picom &
+cbatticon &
 udiskie &
 polkit-dumb-agent &
+picom &
 exec awesome
+export XDG_SESSION_TYPE=x11
+export GDK_BACKEND=x11
+#exec gnome-session
