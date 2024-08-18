@@ -85,7 +85,7 @@ end
 
 # dont display neofetch if the terminal is being run in vim tmux, or jetbrains
 if not set -q VIMRUNTIME; and not set -q TMUX; and test "$TERMINAL_EMULATOR" != "JetBrains-JediTerm"
-    neofetch
+    fastfetch
 end
 set BROWSER firefox
 set EDITOR nvim
