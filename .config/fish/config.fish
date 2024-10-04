@@ -2,6 +2,8 @@
 set fish_greeting
 eval (ssh-agent -c) >/dev/null 2>&1
 
+fish_vi_key_bindings
+
 # startx
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
