@@ -89,10 +89,11 @@ end
 if not set -q VIMRUNTIME; and not set -q TMUX; and test "$TERMINAL_EMULATOR" != "JetBrains-JediTerm"
     fastfetch
 end
-set BROWSER firefox
-set EDITOR nvim
+set -x BROWSER firefox
+set -x EDITOR nvim
 set XDG_CONFIG_HOME /home/zack 
 set GOPATH $HOME/go
+source ~/.config/fish/variables.fish
 
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -100,4 +101,13 @@ alias monoff='xset dpms force off'
 alias vim='nvim'
 
 zoxide init --cmd cd fish | source
+
+function starship_transient_prompt_func 
+    starship prompt
+end
+
+function starship_transient_rprompt_func
+    echo ""
+end
+
 starship init fish | source

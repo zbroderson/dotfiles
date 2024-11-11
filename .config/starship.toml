@@ -1,10 +1,6 @@
 add_newline = false
 
-
-
-#format = "\[custom thingy\]"
-format = '\[$time$username$directory$git_status\] '
-
+format = '\[$time$username$directory$git_status$character\] '
 
 [username]
 show_always = false
@@ -23,9 +19,11 @@ style = "#d36eff"
 truncate_to_repo = false
 truncation_length = -1
 
-[character]                            # The name of the module we are configuring is "character"
-success_symbol = ""     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-
+[character]
+format = "$symbol"
+success_symbol = "[I](bold green)"
+error_symbol = "[I](bold red)"
+vimcmd_symbol = "[N](bold green)"
 
 [package]
 disabled = true

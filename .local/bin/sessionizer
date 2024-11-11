@@ -1,0 +1,36 @@
+#!/usr/bin/env -S fish -N
+
+set --local cmd 'nvim . ; fish'
+
+argparse 'n/name=' 'p/path=' 'c/cmd=' 't/tmux-cmds=' -- $argv
+if set -q _flag_c
+    set cmd $_flag_c
+end
+
+set --local tmuxCommands
+if set -q _flag_t
+    set tmuxCommands (string split ' ' $_flag_t)
+end
+
+set --local tmuxStr (string split ' ' (eval echo -n $tmuxCommands))
+
+if set -q TMUX
+    if not string match -rq "^$_flag_name\$" (tmux ls -F "#{session_name}")
+        tmux new-session -d -s $_flag_name -c $_flag_path $cmd 
+    end
+
+    tmux switch -t $_flag_name
+
+    # return -1 because pb will exit on non-zero status codes
+    return -1
+else
+    if test (count $tmuxStr) -eq 0
+        tmux new-session -s $_flag_name -A -c $_flag_path $cmd 
+    else
+        tmux new-session -s $_flag_name -A -c $_flag_path $cmd \; $tmuxStr
+    end
+end
+#set --local tmuxCommands new-window -d -t $PB_NAME
+
+#; if '[[ ! -v PB_INIT ]]' 'new-window -d -t $projectName' ; setenv -t $projectName PB_INIT true 
+
