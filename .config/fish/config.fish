@@ -102,12 +102,4 @@ alias vim='nvim'
 
 zoxide init --cmd cd fish | source
 
-function starship_transient_prompt_func 
-    starship prompt
-end
-
-function starship_transient_rprompt_func
-    echo ""
-end
-
 starship init fish | source
